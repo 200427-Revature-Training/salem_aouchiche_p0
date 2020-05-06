@@ -1,0 +1,25 @@
+{
+  "name": "salem_aouchiche_p0",
+  "version": "1.0.0",
+  "description": "college schedule web application. ",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^26.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "./src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/200427-Revature-Training/salem_aouchiche_p0.git"
+  },
+  "author": "Salem Aouchiche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/200427-Revature-Training/salem_aouchiche_p0/issues"
+  },
+  "homepage": "https://github.com/200427-Revature-Training/salem_aouchiche_p0#readme"
+}
