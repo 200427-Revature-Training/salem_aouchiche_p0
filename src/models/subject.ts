@@ -1,4 +1,4 @@
-export class subject {
+export class Subject{
     id: number;
     subjectName: string;
     subjectCode: string; 
@@ -9,6 +9,17 @@ export class subject {
         this.subjectCode=subjectCode;
     }
 
+   /**
+     * creating a subject instance according to database table.
+     */
+    static from(obj: subjectTable) {
+        const subject = new Subject(
+            obj.id, 
+            obj.subjectName,
+            obj.subjectCode
+        );
+        return subject;
+    }
 }
 
 interface subjectTable{

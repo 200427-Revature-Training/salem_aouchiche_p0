@@ -18,12 +18,11 @@ export class Course{
         
     }
 
-        /**
-     * Static function for creating a Person instance from the structure the
-     * database gives us
+    /**
+     * creating a course instance according to database table.
      */
     static from(obj: courseTable) {
-        const course = new Courses(
+        const course = new Course(
             obj.id, 
             obj.courseCode,
             obj.courseName,

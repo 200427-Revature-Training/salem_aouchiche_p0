@@ -1,6 +1,6 @@
 import { Course } from '../models/course';
 
-export function getAllPeople(): Course[] {
+export function getAllCourses(): Course[] {
 
 }
 

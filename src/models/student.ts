@@ -1,5 +1,5 @@
 
-export class Students {
+export class Student{
     id: number;
     firstName: string;
     lastName: string;
@@ -14,6 +14,21 @@ export class Students {
         this.email=email;
         this.phone=phone;
         this.schoolYear=schoolYear;
+    }
+
+    /**
+     * creating a student instance according to database table.
+     */
+    static from(obj: studentTable) {
+        const student = new Student(
+            obj.id, 
+            obj.firstName,
+            obj.lastName,
+            obj.email,
+            obj.phone,
+            obj.schoolYear
+        );
+        return student;
     }
 }
 
