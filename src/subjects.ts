@@ -1,4 +1,4 @@
-class subjects {
+export class subject {
     id: number;
     subjectName: string;
     subjectCode: string; 
@@ -8,4 +8,11 @@ class subjects {
         this.subjectName=subjectName;
         this.subjectCode=subjectCode;
     }
+
+}
+
+interface subjectTable{
+    id: number;
+    subjectName: string;
+    subjectCode: string;     
 }

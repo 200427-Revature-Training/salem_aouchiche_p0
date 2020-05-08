@@ -1,5 +1,5 @@
 
-class Students {
+export class Students {
     id: number;
     firstName: string;
     lastName: string;
@@ -15,4 +15,13 @@ class Students {
         this.phone=phone;
         this.schoolYear=schoolYear;
     }
+}
+
+interface studentTable {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email:string;
+    phone:number;
+    schoolYear:number;
 }
