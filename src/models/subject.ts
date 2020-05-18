@@ -1,12 +1,10 @@
 export class Subject{
     id: number;
     subjectName: string;
-    subjectCode: string; 
 
-    constructor(id:number,subjectName:string,subjectCode: string){
+    constructor(id:number,subjectName:string){
         this.id=id;
         this.subjectName=subjectName;
-        this.subjectCode=subjectCode;
     }
 
    /**
@@ -15,15 +13,13 @@ export class Subject{
     static from(obj: subjectTable) {
         const subject = new Subject(
             obj.id, 
-            obj.subjectName,
-            obj.subjectCode
+            obj.subjectName
         );
         return subject;
     }
 }
 
-interface subjectTable{
+export interface subjectTable{
     id: number;
-    subjectName: string;
-    subjectCode: string;     
+    subjectName: string;  
 }

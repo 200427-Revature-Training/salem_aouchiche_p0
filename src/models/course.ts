@@ -1,21 +1,21 @@
+import { Subject } from "./Subject";
+
 export class Course{
     id:number;
     courseCode:string;
     courseName:string; 
     courseUnit:number;
     instructor:string;
-    available : boolean; 
+    subjectsId:Subject;
 
-    
 
-    constructor(id:number,courseCode:string,courseName:string,courseUnit:number,instructor:string,available : boolean ){
+    constructor(id:number,courseCode:string,courseName:string,courseUnit:number,instructor:string,subjectsId:Subject){
         this.id=id;
         this.courseCode=courseCode;
         this.courseName=courseName;
         this.courseUnit=courseUnit;
         this.instructor=instructor;
-        this.available=available;
-        
+        this.subjectsId=subjectsId;          
     }
 
     /**
@@ -28,17 +28,17 @@ export class Course{
             obj.courseName,
             obj.courseUnit,
             obj.instructor,
-            obj.available,
+            obj.subjectsId
         );
         return course;
     }
 }
 
-interface courseTable {
+export interface courseTable {
     id:number;
     courseCode:string;
     courseName:string; 
     courseUnit:number;
     instructor:string;
-    available:boolean;
+    subjectsId:Subject;
 }
