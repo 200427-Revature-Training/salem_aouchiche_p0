@@ -36,4 +36,20 @@ interface Exists {
     exists: boolean;
 }
 
+/*
+    function save new course  from user 
+ */
+export async function saveCourse(course: Course): Promise<Course> {
+    const sql = `INSERT INTO courses(course_code, course_name, course_unit, description, subjects_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const result= await db.query<Course>(sql, [
+        course.courseCode, 
+        course.courseName,
+        course.courseUnit,
+        course.desciption,
+        course.subjectsId
+]);
+ console.log("check saveCourse"+ result.rows[0]); 
+return result.rows[0];  
+
+}
 

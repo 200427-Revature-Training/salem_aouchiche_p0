@@ -5,16 +5,16 @@ export class Course{
     courseCode:string;
     courseName:string; 
     courseUnit:number;
-    instructor:string;
+    desciption:string;
     subjectsId:Subject;
 
 
-    constructor(id:number,courseCode:string,courseName:string,courseUnit:number,instructor:string,subjectsId:Subject){
+    constructor(id:number,courseCode:string,courseName:string,courseUnit:number,desciption:string,subjectsId:Subject){
         this.id=id;
         this.courseCode=courseCode;
         this.courseName=courseName;
         this.courseUnit=courseUnit;
-        this.instructor=instructor;
+        this.desciption=desciption;
         this.subjectsId=subjectsId;          
     }
 
@@ -27,7 +27,7 @@ export class Course{
             obj.courseCode,
             obj.courseName,
             obj.courseUnit,
-            obj.instructor,
+            obj.desciption,
             obj.subjectsId
         );
         return course;
@@ -39,6 +39,6 @@ export interface courseTable {
     courseCode:string;
     courseName:string; 
     courseUnit:number;
-    instructor:string;
+    desciption:string;
     subjectsId:Subject;
 }

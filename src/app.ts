@@ -12,7 +12,7 @@ import bunyan from 'bunyan';
 
 const app = express();
 const log = bunyan.createLogger({name: "Project_P0"});
-const port = process.env.port || 3001;
+const port = process.env.port || 3000;
 
 app.set('port', port);
 
@@ -31,8 +31,7 @@ app.use('/professors',professorsRouter);
 
 process.on('unhandledRejection', () => {
     db.end().then(() => {
-        console.log('Database pool closed');
-        log.warn('something is wrong');
+        log.warn('something is wrong! Database pool closed');
     });
 });
 

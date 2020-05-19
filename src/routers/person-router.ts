@@ -43,21 +43,16 @@ personRouter.get('/:id/', async (request, response, next) => {
     next();
 });
 
-
 /*
-    POST http://localhost:3000/people
-    Creates a new Person and saves them to the database.
-    Returns the inserted data as JSON with status 201.
-
+POST http://localhost:3000/person
+Creates a new Person and saves them to the database.
+Returns the inserted data as JSON with status 201.
+*/
 personRouter.post('', (request, response, next) => {
-    const Person = request.body;
-    const createdPerson = personService.savePerson(Person);
-
-
-
+    const person = request.body;
+    const createdNewPerson = personService.savePerson(person);
     response.status(201);
-    response.json(createdPerson);
+    response.json(createdNewPerson);
     next();
 });
 
-*/

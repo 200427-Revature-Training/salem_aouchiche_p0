@@ -40,3 +40,24 @@ subjectsRouter.get('/:id', async (request, response, next) => {
     }
     next();
 });
+
+/*
+POST http://localhost:3000/subjects
+Creates a new subject and saves them to the database.
+Returns the inserted data as JSON with status 201.
+*/
+subjectsRouter.post('', async(request, response, next) => {
+    const subject = request.body;
+    try{
+        const createdNewSubject = await subjectsService.saveSubject(subject); 
+        response.status(201);
+        response.json(createdNewSubject);
+
+    }catch(err){
+        console.log(err);
+        return;
+    }
+    
+    next();
+});
+

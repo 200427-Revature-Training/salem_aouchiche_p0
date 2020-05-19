@@ -8,7 +8,7 @@ export class Person{
     email:string;
     pass:string;
     phone:number;
-    personType:number;
+    personType:number; // 1 for student, 2 for professor. 
     addressId:Address;
   //  address_id: Address;
     constructor(id:number,firstName:string,lastName:string,email:string,pass:string,phone:number,personType:number,addressId:Address){

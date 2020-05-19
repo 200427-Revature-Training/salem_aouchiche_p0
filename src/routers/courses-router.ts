@@ -43,21 +43,24 @@ coursesRouter.get('/:id/', async (request, response, next) => {
     next();
 });
 
-
-/*
-    POST http://localhost:3000/people
+/*   POST http://localhost:3000/courses
     Creates a new course and saves them to the database.
     Returns the inserted data as JSON with status 201.
+*/
 
 coursesRouter.post('', (request, response, next) => {
     const course = request.body;
-    const createdcourse = coursesService.saveCourse(course);
+    try {
+        const createdNewCourse = coursesService.saveCourse(course);
+        response.status(201);
+        response.json(createdNewCourse);
+        console.log("createdNewCourse "+createdNewCourse); 
 
-
-
-    response.status(201);
-    response.json(createdcourse);
+    }catch(err){
+        console.log(err);
+    }
+    
     next();
 });
 
-*/
+

@@ -11,9 +11,24 @@ export function getStudentById(id: number): Promise<Student> {
 }
 
 
-/** 
- * diffrent function applies to student updates, insert, 
- */
+export function saveStudent(student: Student): Promise<Student> {
+
+    // input new Student from the user:
+    const newStudent= new Student(
+        undefined, // id is auto defined 
+        student.persontype,          // 1 for student and 2 for professor.
+        student.personId
+    );
+
+    if(student.personId && student.persontype==1) {
+        // submit to DAO
+        return studentsdao.saveStudent(newStudent); 
+
+    } else {
+        // TODO: We should fail here, probably issue some kind of 400
+        return new Promise((resolve, reject) => reject(422));
+    }
+}
 
 
 

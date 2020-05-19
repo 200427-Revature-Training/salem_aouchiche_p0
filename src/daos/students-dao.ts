@@ -41,3 +41,17 @@ export async function studentExists(studentId: number): Promise<boolean> {
 interface Exists {
     exists: boolean;
 }
+
+/*
+    function save new Student from user 
+ */
+export async function saveStudent(student: Student): Promise<Student> {
+    const sql = `INSERT INTO professors(person_type,person_id) VALUES ($1, $2) RETURNING *`;
+    const result= await db.query<Student>(sql, [
+        student.personId,
+        student.persontype
+]);
+
+return result.rows[0];  
+
+}

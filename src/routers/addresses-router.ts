@@ -22,12 +22,12 @@ const log = bunyan.createLogger({name: "myProject_P0"});
     });
 });
 
-
- //    http://localhost:3000/addresss/1
+ //    http://localhost:3000/address/1
  //   Retrieves a single address from the database by id
  //   If the address does not exist, sends 404
- addressRouter.get('/:id/', async (request, response, next) => {
+ addressRouter.get('/:id', async (request, response, next) => {
     log.info('addresssRouter works, getaddressById(id).'); 
+    
     const id: number = parseInt(request.params.id); 
     try {
 
@@ -41,22 +41,18 @@ const log = bunyan.createLogger({name: "myProject_P0"});
     }
     next();
 });
+ 
 
-
-/*
-    POST http://localhost:3000/people
+ /*   POST http://localhost:3000/addresss
     Creates a new address and saves them to the database.
     Returns the inserted data as JSON with status 201.
+*/
 
-addresssRouter.post('', (request, response, next) => {
+addressRouter.post('', (request, response, next) => {
     const address = request.body;
-    const createdaddress = addresssService.saveaddress(address);
-
-
-
+    const createdNewAddress = addressService.saveAddress(address);
     response.status(201);
-    response.json(createdaddress);
+    response.json(createdNewAddress);
     next();
 });
 
-*/

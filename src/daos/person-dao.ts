@@ -36,4 +36,22 @@ interface Exists {
     exists: boolean;
 }
 
+/*
+    function save new person  from user 
+ */
+export async function savePerson(person: Person): Promise<Person> {
+    const sql = `INSERT INTO person(first_name, last_name, email, pass,phone,person_type,addresses_id) \
+    VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+    const result= await db.query<Person>(sql, [
+        person.firstName, 
+        person.lastName,
+        person.email,
+        person.pass,
+        person.personType,
+        person.phone,
+        person.addressId
+]);
 
+return result.rows[0];  
+
+}

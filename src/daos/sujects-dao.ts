@@ -16,7 +16,7 @@ export async function getSubjectById(subjectId: number): Promise<Subject> {
     if (!checkSubjectExists) {
         return undefined;
     }
-    const sql = `SELECT * FROM subjects WHERE id = $1`;
+    const sql = `SELECT * FROM subjects WHERE id = $1`; // subject 1,2,3
     const result = await db.query<Subject>(sql, [subjectId]);
     return result.rows[0];
 
@@ -35,4 +35,16 @@ interface Exists {
     exists: boolean;
 }
 
+/*
+    function save new Subject from user 
+ */
+export async function saveSubject(subject: Subject): Promise<Subject> {
+    const sql = `INSERT INTO subjects(subjects_name) VALUES ($1) RETURNING *`;
+    const result= await db.query<Subject>(sql, [
+        subject.subjectName
+]);
+
+return result.rows[0];  
+
+}
 

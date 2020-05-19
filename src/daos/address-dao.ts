@@ -36,4 +36,21 @@ interface Exists {
     exists: boolean;
 }
 
+/*
+    function save new address from user 
+ */
+export async function saveAddress(address: Address): Promise<Address> {
+    const sql = `INSERT INTO addresses (street, city, state,zipcode) VALUES ($1, $2, $3, $4) RETURNING *`;
+    const result= await db.query<Address>(sql, [
+        address.street,
+        address.city,
+        address.state,
+        address.zipcode
+]);
+console.log("check saveAddress "+ result.rows[0]); 
+return result.rows[0];  
+
+}
+
+
 

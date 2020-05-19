@@ -48,28 +48,14 @@ professorsRouter.get('/:id', (request, response, next) => {
 });
 
 /*
-
-professorsRouter.post('/shit', (request, response, next) => {
-    log.info('post obj'); 
-    log.info(request.body); 
-    
-    //if(!this.getUserRole(id).can_get_inf) throw ('you dont have permission')
-     const id = +request.params.id;
-     professorsService.getprofessorById(id).then(professor => {
-         if (!professor) {
-             response.sendStatus(404);
-         } else {
-             response.json(professor);
-         }
-         next();
-     }).catch(err => {
-         response.sendStatus(500);
-         next();
-     })
-     
- });
-function getUserRole(id) {
-    // role 
-    return this.db.select('username, email, r.name, r.can_get_inf from person p join roles r on p.role_id = r.id')
-}
+POST http://localhost:3000/person
+Creates a new Person and saves them to the database.
+Returns the inserted data as JSON with status 201.
 */
+professorsRouter.post('', (request, response, next) => {
+    const professor = request.body;
+    const createdNewProfessor =professorsService.saveProfessor(professor);
+    response.status(201);
+    response.json(createdNewProfessor);
+    next();
+});
