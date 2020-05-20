@@ -81,30 +81,30 @@ describe('person', () => {
 
         // Stubbing - Replacing a method with a fake method implementation
         mockPersonDao.getPersonById.mockImplementation(() => {
-            return  
-            [
-                {
-                    "id": 3,
-                    "first_name": "Cindy",
-                    "last_name": "Chevy",
-                    "email": "cchevy@gmail.com",
-                    "pass": "cchevypass",
-                    "phone": "981-271-4315",
-                    "person_type_id": 1,
-                    "addresses_id": 3
-                }
+            return  [ 
+            {
+                "id": 1,
+                "first_name": "salem",
+                "last_name": "Aouchiche",
+                "email": "saouchiche@gmail.com",
+                "pass": "salempass",
+                "phone": "640-610-7614",
+                "person_type_id": 1,
+                "addresses_id": 1
+            }
             
-            ]
+        ]
             
                 
        });
-
+       
         const response = await personService.getPersonById(1);
-        expect(response.first_name).toEqual('Cindy');
-        expect(response.last_name).toEqual('Chevy');
-        expect(response.email).toEqual('cchevy@gmail.com');
-        expect(response.pass).toEqual('cchevypass');
-        expect(response.phone).toEqual('981-271-4315');
+        console.log(response.first_name);
+        expect(response[0].first_name).toEqual('salem');
+        expect(response[0].last_name).toEqual('Aouchiche');
+        expect(response[0].email).toEqual('saouchiche@gmail.com');
+        expect(response[0].pass).toEqual('salempass');
+        expect(response[0].phone).toEqual('640-610-7614');
     });
 
     test('it should throw 422 error', async () => {

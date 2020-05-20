@@ -1,7 +1,7 @@
 
 
 import { Subject } from '../models/Subject';
-import * as subjectdao from '../daos/sujects-dao';
+import * as subjectdao from '../daos/subjects-dao';
 
 
 export function getAllSubjects(): Promise<Subject[]> {
