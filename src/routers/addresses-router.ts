@@ -50,6 +50,7 @@ const log = bunyan.createLogger({name: "myProject_P0"});
 
 addressRouter.post('', (request, response, next) => {
     const address = request.body;
+    console.log("req address "+address); 
     const createdNewAddress = addressService.saveAddress(address);
     response.status(201);
     response.json(createdNewAddress);

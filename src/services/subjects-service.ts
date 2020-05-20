@@ -18,10 +18,10 @@ export function saveSubject(subject: Subject): Promise<Subject> {
     // input new Subject from the user:
     const newSubject= new Subject(
         undefined, // id is auto defined 
-        subject.subjectName
+        subject.subjects_name
     );
 
-    if(subject.subjectName) {
+    if(subject.subjects_name) {
         // submit to DAO
         return subjectdao.saveSubject(newSubject); 
 

@@ -3,12 +3,12 @@ import { Course } from "./Course"
 
 export class StudentCourse{
  
-    studentsId:Student;
-    coursesId:Course;
+    students_id:Student;
+    courses_id:Course;
 
-    constructor(studentsId:Student,coursesId:Course){
-    this.studentsId=studentsId;
-    this.coursesId=coursesId;
+    constructor(students_id:Student,courses_id:Course){
+    this.students_id=students_id;
+    this.courses_id=courses_id;
         
     }
 
@@ -17,14 +17,14 @@ export class StudentCourse{
      */
     static from(obj: StudentCourseTable) {
         const studentCourse = new StudentCourse(
-            obj.studentsId,
-            obj.coursesId
+            obj.students_id,
+            obj.courses_id
         );
         return studentCourse;
     }
 }
 
 export interface StudentCourseTable{
-    studentsId:Student;
-    coursesId:Course; 
+    students_id:Student;
+    courses_id:Course; 
 }

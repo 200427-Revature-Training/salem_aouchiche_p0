@@ -7,8 +7,7 @@ export class Address{
     state:string;
     zipcode:number;
      
-    constructor(id:number,street:string,city:string,state:string,zipcode:number){
-        this.id=id;
+    constructor(street:string,city:string,state:string,zipcode:number){
         this.street=street;
         this.city=city;
         this.state=state; 
@@ -20,8 +19,7 @@ export class Address{
      * creating a Address instance according to database table.
      */
     static from(obj: addressTable) {
-        const address = new Address(
-            obj.id, 
+        const address = new Address( 
             obj.street,
             obj.city,
             obj.state,

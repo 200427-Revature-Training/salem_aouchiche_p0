@@ -19,6 +19,6 @@
     },
     "include": [
         "src/**/*",
-        "src/util/*.d.ts"
+        "src/util/*.d.ts", "__test__/address-service.spec.ts"
     ]
 }

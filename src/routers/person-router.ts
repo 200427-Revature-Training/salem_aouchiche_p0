@@ -50,6 +50,7 @@ Returns the inserted data as JSON with status 201.
 */
 personRouter.post('', (request, response, next) => {
     const person = request.body;
+    
     const createdNewPerson = personService.savePerson(person);
     response.status(201);
     response.json(createdNewPerson);

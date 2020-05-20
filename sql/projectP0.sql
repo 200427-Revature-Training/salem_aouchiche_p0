@@ -1,31 +1,23 @@
 SELECT *FROM addresses;
 SELECT * FROM courses;
-SELECT * FROM person; 
-SELECT * FROM professors;
+--SELECT p.first_name, p.last_name , pt.person_type FROM person p JOIN person_types pt ON p.person_type = pt.person_type_id; 
+SELECT * FROM person_types;
 SELECT * FROM professors_courses;
-SELECT * FROM students;
 SELECT * FROM students_courses;
-SELECT * FROM subjects;
+SELECT * FROM person;
 
-SELECT * FROM courses.course_code WHERE id = 1;
 
--- select students names, and addresses
-SELECT first_name, last_name, addresses.* FROM person
-JOIN addresses ON addresses.id =person.addresses_id 
-JOIN students ON person.id =students.person_id; 
 
--- select professors names, and addresses
-SELECT first_name, last_name, addresses.* FROM person
-JOIN addresses ON addresses.id =person.addresses_id 
-JOIN professors ON person.id =professors.person_id;
 
--- select student by id
---SELECT first_name, last_name FROM person
-SELECT * FROM person
-JOIN students ON person.id =students.person_id
-WHERE students.person_id =2; 
---JOIN students_courses ON students_courses.courses_id =students_courses.students_id; 
+TRUNCATE courses;
+TRUNCATE students_courses;
+TRUNCATE professors_courses;
 
+DROP TABLE person_types;
+DROP TABLE courses;
+DROP TABLE professors_courses;
+DROP TABLE students_courses;
+DROP TABLE person;
  
 
 -- CREATE table person 
@@ -36,11 +28,23 @@ CREATE TABLE person(
 	email VARCHAR(50),
 	pass VARCHAR(50),
 	phone VARCHAR(20),
-	person_type INTEGER,  -- 1 FOR STUDENT, 2 FOR PROFESSOR.
+	person_type_id INTEGER REFERENCES person_types(id),  -- 1 FOR STUDENT, 2 FOR PROFESSOR.
 	addresses_id INTEGER REFERENCES Addresses(id)    
 );
 
-INSERT INTO person(first_name, last_name, email, pass,phone,person_type,addresses_id)VALUES 
+CREATE TABLE person_types(
+   id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+   person_type VARCHAR(20)
+);
+
+
+INSERT INTO person_types(person_type)VALUES 
+('Student'),
+('Professor');
+ALTER TABLE person add COLUMN person_type_id INTEGER REFERENCES person_types(id);
+
+
+INSERT INTO person(first_name, last_name, email, pass,phone,person_type_id,addresses_id)VALUES 
 -- STUDENTS
 ('salem','Aouchiche','saouchiche@gmail.com','salempass','640-610-7614',1,1),
 ('Billy','Brown','bbrown@gmail.com','bbrownpass','777-700-2185',1,2),
@@ -59,34 +63,7 @@ INSERT INTO person(first_name, last_name, email, pass,phone,person_type,addresse
 8,Ilsa,Rushmare,irushmare7@examiner.com,cricMLit9r,368-348-6737,8
 9,Alexio,Caush,acaush8@google.es,wbhjkU3t,912-664-0998,9
 */
--- CREATE STUDENTS TABLE
-CREATE TABLE students(
-	id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
-	person_type INTEGER,
-	person_id INTEGER REFERENCES person(id) 
-);
- 
 
--- INSERT INTO students VALUES.
-INSERT INTO students(person_type,person_id)VALUES 
-(1,1),
-(1,2),
-(1,3),
-(1,4),
-(1,5);
-
--- CREATE PROFESSORS TABLE 
-CREATE TABLE professors(
-	id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
-	person_type INTEGER,
-	person_id INTEGER REFERENCES person(id) 
-);
--- INSERT INTO PROFESSORS VALUES.
-INSERT INTO professors(person_type,person_id)VALUES 
-(2,6),
-(2,7),
-(2,8),
-(2,9);
 -- CREATE ADDRESSES TABLE 
 CREATE TABLE Addresses(
 	id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -141,9 +118,10 @@ INSERT INTO courses(course_code, course_name, course_unit, description, subjects
 	('ENGL205', 'Critical Thinking and Intermidiate Composition', '3', ' This intermediate-level college reading and writing course uses 
 		the principles of rhetoric to build research and critical thinking skills required for success at four-year institutions.',3);
 
+
 -- CREATE STUDENTS_COURSES TABLE--
 CREATE TABLE students_courses(
-	students_id INTEGER REFERENCES students(id),
+	students_id INTEGER REFERENCES person(id),
 	courses_id  INTEGER REFERENCES courses(id),
 	PRIMARY KEY (students_id,courses_id)
 );
@@ -164,7 +142,7 @@ INSERT INTO students_courses(students_id, courses_id)VALUES
 
 -- CREATE PROFESSORS_COURSES TABLE--
 CREATE TABLE professors_courses(
-	professors_id INTEGER REFERENCES professors(id),
+	professors_id INTEGER REFERENCES person(id),
 	courses_id  INTEGER REFERENCES courses(id),
 	PRIMARY KEY (professors_id,courses_id)
 );

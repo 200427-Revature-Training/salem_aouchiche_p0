@@ -48,19 +48,22 @@ coursesRouter.get('/:id/', async (request, response, next) => {
     Returns the inserted data as JSON with status 201.
 */
 
-coursesRouter.post('', (request, response, next) => {
-    const course = request.body;
-    try {
-        const createdNewCourse = coursesService.saveCourse(course);
+
+coursesRouter.post('', async(request, response, next) => {
+
+   const course = request.body;  
+   
+   //console.log("course"+course); 
+   
+   
+   try {
+        const createdNewCourse =await coursesService.saveCourse(course);
         response.status(201);
         response.json(createdNewCourse);
-        console.log("createdNewCourse "+createdNewCourse); 
+        //console.log("createdNewCourse "); 
 
     }catch(err){
         console.log(err);
     }
     
-    next();
 });
-
-

@@ -4,7 +4,14 @@ import {Person, personTable } from '../models/Person';
 // function with async/wait
 export async function getAllPerson():Promise<Person[]> {
    // console.log('getAllPerson');
-    const sql = 'SELECT * FROM person';
+   const sql =`SELECT * FROM person;`; 
+   /*
+    const sql = `SELECT p.first_name, p.last_name, p.email, p.pass, p.phone, pt.person_type, a.street, a.city 
+                    FROM person p 
+                    join person_types pt on p.person_type_id = pt.id
+                    left join addresses a on p.addresses_id = a.id
+                    ` ;
+                    */
     const result = await db.query<personTable>(sql,[]);
     return result.rows;
 }
@@ -43,13 +50,13 @@ export async function savePerson(person: Person): Promise<Person> {
     const sql = `INSERT INTO person(first_name, last_name, email, pass,phone,person_type,addresses_id) \
     VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
     const result= await db.query<Person>(sql, [
-        person.firstName, 
-        person.lastName,
+        person.first_name, 
+        person.last_name,
         person.email,
         person.pass,
-        person.personType,
+        person.person_type_id,
         person.phone,
-        person.addressId
+        person.addresses_id
 ]);
 
 return result.rows[0];  

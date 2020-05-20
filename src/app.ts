@@ -1,11 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { studentsRouter } from './routers/students-router';
+//import { studentsRouter } from './routers/students-router';
 import { coursesRouter } from './routers/courses-router';
 import { subjectsRouter } from './routers/subjects-router';
 import {personRouter} from './routers/person-router'; 
 import {addressRouter} from './routers/addresses-router'; 
-import {professorsRouter} from './routers/professors-router'; 
+//import {professorsRouter} from './routers/professors-router'; 
+import {personTypeRouter} from './routers/personType-router'
 import { db } from './daos/db';
 import bunyan from 'bunyan'; 
 
@@ -21,12 +22,13 @@ app.use(bodyParser.json());
 log.warn('server started');
 
 /* Router Registration*/
-app.use('/students', studentsRouter);
+//app.use('/students', studentsRouter);
 app.use('/courses',coursesRouter);
 app.use('/subjects',subjectsRouter);
 app.use('/person',personRouter);
 app.use('/address',addressRouter);
-app.use('/professors',professorsRouter);
+//app.use('/professors',professorsRouter);
+app.use('/personType',personTypeRouter);
 
 
 process.on('unhandledRejection', () => {

@@ -3,12 +3,12 @@ import { Course } from "./Course";
 
 export class ProfessorCourse{
  
-    professorsId:Professor;
-    coursesId:Course;
+    professors_id:Professor;
+    courses_id:Course;
 
-    constructor(professorsId:Professor,coursesId:Course){
-    this.professorsId=professorsId;
-    this.coursesId=coursesId;
+    constructor(professors_id:Professor,courses_id:Course){
+    this.professors_id=professors_id;
+    this.courses_id=courses_id;
         
     }
 
@@ -17,14 +17,14 @@ export class ProfessorCourse{
      */
     static from(obj: ProfessorCourseTable) {
         const professorCourse = new ProfessorCourse(
-            obj.professorsId,
-            obj.coursesId
+            obj.professors_id,
+            obj.courses_id
         );
         return professorCourse;
     }
 }
 
 export interface ProfessorCourseTable{
-    professorsId:Professor;
-    coursesId:Course; 
+    professors_id:Professor;
+    courses_id:Course; 
 }

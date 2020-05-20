@@ -42,13 +42,13 @@ interface Exists {
 export async function saveCourse(course: Course): Promise<Course> {
     const sql = `INSERT INTO courses(course_code, course_name, course_unit, description, subjects_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
     const result= await db.query<Course>(sql, [
-        course.courseCode, 
-        course.courseName,
-        course.courseUnit,
-        course.desciption,
-        course.subjectsId
+        course.course_code, 
+        course.course_name,
+        course.course_unit,
+        course.description,
+        course.subjects_id
 ]);
- console.log("check saveCourse"+ result.rows[0]); 
+ console.log(" the course is saved"+ result.rows[0]); 
 return result.rows[0];  
 
 }

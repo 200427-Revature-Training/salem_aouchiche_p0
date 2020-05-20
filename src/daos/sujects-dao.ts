@@ -41,7 +41,7 @@ interface Exists {
 export async function saveSubject(subject: Subject): Promise<Subject> {
     const sql = `INSERT INTO subjects(subjects_name) VALUES ($1) RETURNING *`;
     const result= await db.query<Subject>(sql, [
-        subject.subjectName
+        subject.subjects_name
 ]);
 
 return result.rows[0];  

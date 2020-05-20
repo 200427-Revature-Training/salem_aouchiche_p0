@@ -1,21 +1,20 @@
-import { Subject } from "./Subject";
+//import { Subject } from "./Subject";
 
 export class Course{
     id:number;
-    courseCode:string;
-    courseName:string; 
-    courseUnit:number;
-    desciption:string;
-    subjectsId:Subject;
+    course_code:string;
+    course_name:string; 
+    course_unit:number;
+    description:string;
+    subjects_id:number
 
 
-    constructor(id:number,courseCode:string,courseName:string,courseUnit:number,desciption:string,subjectsId:Subject){
-        this.id=id;
-        this.courseCode=courseCode;
-        this.courseName=courseName;
-        this.courseUnit=courseUnit;
-        this.desciption=desciption;
-        this.subjectsId=subjectsId;          
+    constructor(course_code:string,course_name:string,course_unit:number,description:string,subjects_id:number){
+        this.course_code=course_code;
+        this.course_name=course_name;
+        this.course_unit=course_unit;
+        this.description=description;
+        this.subjects_id=subjects_id;          
     }
 
     /**
@@ -23,12 +22,11 @@ export class Course{
      */
     static from(obj: courseTable) {
         const course = new Course(
-            obj.id, 
-            obj.courseCode,
-            obj.courseName,
-            obj.courseUnit,
-            obj.desciption,
-            obj.subjectsId
+            obj.course_code,
+            obj.course_name,
+            obj.course_unit,
+            obj.description,
+            obj.subjects_id
         );
         return course;
     }
@@ -36,9 +34,9 @@ export class Course{
 
 export interface courseTable {
     id:number;
-    courseCode:string;
-    courseName:string; 
-    courseUnit:number;
-    desciption:string;
-    subjectsId:Subject;
+    course_code:string;
+    course_name:string; 
+    course_unit:number;
+    description:string;
+    subjects_id:number;
 }
